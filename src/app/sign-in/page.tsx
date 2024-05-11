@@ -4,6 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import LoginForm from "@/components/auth/LoginForm";
 
 export default function SignInPage() {
   const { status } = useSession();
@@ -18,10 +19,8 @@ export default function SignInPage() {
     router.push("/");
   }
   return (
-    <div className="flex items-center justify-center h-screen w-screen">
-      <Card>
-        <Button onClick={() => signIn("google")}>Sign In with Google</Button>
-      </Card>
-    </div>
+    <div className="flex flex-col items-center justify-center h-screen ">
+    <LoginForm />
+  </div>
   );
 }
