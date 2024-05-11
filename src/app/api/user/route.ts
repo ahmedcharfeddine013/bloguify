@@ -1,7 +1,6 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
-import * as z from "zod";
 import { RegisterSchema } from "@/schema";
 
 export async function POST(req: Request) {

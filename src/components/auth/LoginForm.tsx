@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
@@ -129,7 +129,7 @@ const LoginForm = () => {
             Policy
           </div>
           <Link
-            href="../auth/register"
+            href="../register"
             className="px-8 text-center text-sm text-muted-foreground hover:underline"
           >
             Don&apos;t have an account?

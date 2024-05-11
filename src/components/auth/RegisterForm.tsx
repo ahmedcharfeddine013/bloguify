@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
@@ -14,7 +14,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -108,8 +107,6 @@ const RegisterForm = () => {
                   )}
                 />
               </div>
-              {/* <FormError message={error} />
-              <FormSuccess message={success} /> */}
               <Button
                 type="submit"
                 className="w-full flex items-center justify-center gap-2"
@@ -124,7 +121,7 @@ const RegisterForm = () => {
             Policy
           </div>
           <Link
-            href="../auth/sign-in"
+            href="../sign-in"
             className="px-8 text-center text-sm text-muted-foreground hover:underline"
           >
             Already have an account?
