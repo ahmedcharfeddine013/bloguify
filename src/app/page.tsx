@@ -1,5 +1,5 @@
 import Image from "next/image";
-// mongodb+srv://ahmedmohsen:ahmedmohsenpw@cluster0.7d4kifv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
