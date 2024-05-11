@@ -57,3 +57,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+div:hover > span {
+  width: 100%;
+}
