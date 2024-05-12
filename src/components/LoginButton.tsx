@@ -1,11 +1,9 @@
+'use client'
+
 import React from "react";
 import { Button } from "./ui/button";
-import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export default function LoginButton() {
-  return (
-    <Button asChild>
-      <Link href={"/sign-in"}>SIGN IN</Link>
-    </Button>
-  );
+  return <Button onClick={() => signIn("google")}>SIGN IN</Button>;
 }

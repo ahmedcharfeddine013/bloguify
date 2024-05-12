@@ -2,8 +2,13 @@ import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
 import LoginButton from "./LoginButton";
+import { getServerSession } from "next-auth";
+import SignOutButton from "./auth/SignOutButton";
+import { getSession } from "next-auth/react";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const session = await getSession();
+
   return (
     <nav className="flex items-center justify-around py-4 w-full fixed">
       <div className="flex items-center justify-center gap-4 text-md">
@@ -23,7 +28,7 @@ export default function Navbar() {
       </div>
       <div className="flex items-center gap-4">
         <ThemeToggle />
-        <LoginButton />
+        {!session ? <LoginButton /> : <SignOutButton />}
       </div>
     </nav>
   );
