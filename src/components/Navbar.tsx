@@ -5,9 +5,10 @@ import LoginButton from "./LoginButton";
 import { getServerSession } from "next-auth";
 import SignOutButton from "./auth/SignOutButton";
 import { getSession } from "next-auth/react";
+import Image from "next/image";
 
 export default async function Navbar() {
-  const session = await getSession();
+  const session = await getServerSession();
 
   return (
     <nav className="flex items-center justify-around py-4 w-full fixed">
@@ -27,8 +28,26 @@ export default async function Navbar() {
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <ThemeToggle />
-        {!session ? <LoginButton /> : <SignOutButton />}
+        {/* <ThemeToggle /> */}
+        {!session ? (
+          <LoginButton />
+        ) : (
+          <>
+            {session.user?.image && (
+              <Link
+                href={"/profile"}
+                className="flex items-center justify-center rounded-full overflow-hidden border-2 dark:border-white"
+              >
+                <Image
+                  src={session.user.image}
+                  height={30}
+                  width={30}
+                  alt="user image"
+                />
+              </Link>
+            )}
+          </>
+        )}
       </div>
     </nav>
   );

@@ -3,13 +3,8 @@ import GoogleProvider from "next-auth/providers/google";
 import db from "./db";
 import { getServerSession, NextAuthOptions } from "next-auth";
 
-
 export const authOptions: NextAuthOptions = {
-  // adapter: PrismaAdapter(db),
-  // secret: process.env.NEXTAUTH_SECRET,
-  // session: {
-  //   strategy: "jwt",
-  // },
+  adapter: PrismaAdapter(db),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
