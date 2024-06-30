@@ -4,10 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/Providers/theme-provider";
 import Navbar from "@/components/Navbar";
 import { getServerSession } from "next-auth";
-// import { authOptions } from "@/lib/auth";
 
-import SessionProvider from "@/Providers/AuthProvider";
-import { authOptions } from "@/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,16 +18,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session}>
-          <ThemeProvider attribute="class" defaultTheme="dark">
-            <Navbar />
-            {children}
-          </ThemeProvider>
-        </SessionProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

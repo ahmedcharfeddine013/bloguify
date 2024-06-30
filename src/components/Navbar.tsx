@@ -1,11 +1,10 @@
 import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
-import LoginButton from "./LoginButton";
 import { getServerSession } from "next-auth";
-import SignOutButton from "./auth/SignOutButton";
 import { getSession } from "next-auth/react";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 export default async function Navbar() {
   const session = await getServerSession();
@@ -30,7 +29,7 @@ export default async function Navbar() {
       <div className="flex items-center gap-4">
         {/* <ThemeToggle /> */}
         {!session ? (
-          <LoginButton />
+          <Button />
         ) : (
           <>
             {session.user?.image && (
