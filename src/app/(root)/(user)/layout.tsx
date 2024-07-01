@@ -25,12 +25,12 @@ const UserLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <Navbar />
-      <div className="py-32 grid grid-cols-4 px-10 gap-10">
-        <div ref={sidebarRef}  className={`bg-white/10 p-6 h-fit  fixed top-32`}>
+      <div className="py-32 flex w-full items-center justify-center lg:grid lg:grid-cols-4 px-3 md:px-10 gap-10">
+        <div ref={sidebarRef} className={`bg-white/10 p-6 h-fit hidden lg:block  fixed top-32`}>
           <SideBar />
         </div>
-        <div></div>
-        <div className="p-6 bg-white/10 col-span-2">{children}</div>
+        <div className="hidden lg:block"></div>
+        <div className="p-6 bg-white/10 w-full lg:col-span-2">{children}</div>
       </div>
     </div>
   );

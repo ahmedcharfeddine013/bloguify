@@ -10,6 +10,11 @@ import SideBarMobile from "../sidebar/SideBarMobile";
 import { X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { SignedIn } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
+import { SignUpButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 const Navbar = () => {
   const [toggled, setToggled] = useState(false);
@@ -32,7 +37,7 @@ const Navbar = () => {
     }
   }, [toggled]);
   return (
-    <nav className="py-3 shadow-md flex w-full h-20 flec items-center fixed justify-between px-6 md:px-20 border-b bg-background">
+    <nav className="py-3 shadow-md flex w-full h-20 flec items-center fixed lg:top-0 justify-between px-6 md:px-20 border-b bg-background">
       <div className="flex items-center justify-between w-full relative">
         <div
           id="mobile_sidebar"
@@ -57,14 +62,27 @@ const Navbar = () => {
           <Logo />
           <SearchForm />
         </div>
-        <div className="flex items-center justify-end w-full gap-5">
-          <Button className="hidden lg:block">Create post</Button>
-          <SearchFormMobile />
-          <div>
-            <BellRing className="w-6 h-6" />
+        <SignedOut>
+          <div className="flex items-center justify-end w-full gap-5">
+            <Button asChild className="border bg-transparent border-primary">
+              <Link href={"/auth/sign-in"}>Sign In</Link>
+            </Button>
+            <Button asChild>
+              <Link href={"/auth/sign-up"}>Sign Up</Link>
+            </Button>
           </div>
-          <Button className="rounded-full w-10 h-10">AC</Button>
-        </div>
+        </SignedOut>
+
+        <SignedIn>
+          <div className="flex items-center justify-end w-full gap-5">
+            <Button className="hidden lg:block">Create post</Button>
+            <SearchFormMobile />
+            <div>
+              <BellRing className="w-6 h-6" />
+            </div>
+            <Button className="rounded-full w-10 h-10">AC</Button>
+          </div>
+        </SignedIn>
       </div>
     </nav>
   );

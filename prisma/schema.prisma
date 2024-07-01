@@ -13,10 +13,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  User
+  ADMIN
+}
+
 model Account {
   id                String  @id @default(cuid()) @map("_id")
   userId            String
   type              String
+  role              Role    @default(User)
   provider          String
   providerAccountId String
   refresh_token     String?
