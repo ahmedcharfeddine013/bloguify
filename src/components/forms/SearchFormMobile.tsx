@@ -29,9 +29,12 @@ const SearchFormMobile = () => {
   }, [toggled]);
 
   return (
-    <div className=" flex w-full justify-end">
-      <Button onClick={() => setToggled(!toggled)}>
-        <Search />
+    <div className="flex w-full justify-end lg:hidden">
+      <Button
+        className="p-0 w-8 h-8 bg-transparent"
+        onClick={() => setToggled(!toggled)}
+      >
+        <Search className="w-6 h-6" />
       </Button>
 
       <form
