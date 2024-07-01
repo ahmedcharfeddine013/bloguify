@@ -8,7 +8,11 @@ const SideBar = () => {
       <h1 className="text-2xl font-bold">DEVIA Community</h1>
       <div className="flex flex-col gap-4">
         {sideBarLinks.map((link, i) => (
-          <Link key={i} href={link.link} className="text-md hover:text-primary duration-100 transition-colors ease-in">
+          <Link
+            key={i}
+            href={link.link}
+            className="text-md hover:text-primary duration-100 transition-colors ease-in"
+          >
             {link.title}
           </Link>
         ))}
