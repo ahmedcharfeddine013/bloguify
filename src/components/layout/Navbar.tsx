@@ -12,8 +12,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SignedIn } from "@clerk/nextjs";
 import { SignedOut } from "@clerk/nextjs";
-import { SignInButton } from "@clerk/nextjs";
-import { SignUpButton } from "@clerk/nextjs";
+import { User } from "@clerk/nextjs/server";
+import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -63,7 +63,7 @@ const Navbar = () => {
           <SearchForm />
         </div>
         <SignedOut>
-          <div className="flex items-center justify-end w-full gap-5">
+          <div className="flex items-center justify-end w-full gap-2 md:gap-5">
             <Button asChild className="border bg-transparent border-primary">
               <Link href={"/auth/sign-in"}>Sign In</Link>
             </Button>
@@ -80,7 +80,7 @@ const Navbar = () => {
             <div>
               <BellRing className="w-6 h-6" />
             </div>
-            <Button className="rounded-full w-10 h-10">AC</Button>
+            <UserButton />
           </div>
         </SignedIn>
       </div>
