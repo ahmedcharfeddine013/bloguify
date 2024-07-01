@@ -32,7 +32,7 @@ const Navbar = () => {
     }
   }, [toggled]);
   return (
-    <nav className="py-3 shadow-md flex w-full h-20 flec items-center fixed justify-between px-6 md:px-20 border-b">
+    <nav className="py-3 shadow-md flex w-full h-20 flec items-center fixed justify-between px-6 md:px-20 border-b bg-background">
       <div className="flex items-center justify-between w-full relative">
         <div
           id="mobile_sidebar"
@@ -47,9 +47,9 @@ const Navbar = () => {
           <SideBarMobile toggled={toggled} />
         </div>
 
-        <div className="flex items-center justify-start w-full gap-10">
+        <div className="flex items-center justify-start w-full gap-4">
           <Button
-            className="p-0 bg-transparent h-8 w-8"
+            className="p-0 bg-transparent h-8 w-8 lg:hidden"
             onClick={() => setToggled(!toggled)}
           >
             <Menu className="w-6 h-6" />
