@@ -1,9 +1,11 @@
-import db from "../db";
+"use server";
 
+import db from "../db";
 import * as z from "zod";
 import { addCommentSchema } from "../validators/comment";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export async function getPostCommentsByPostId(postId: string) {
   const comments = await db.comment.findMany({ where: { postId } });
@@ -38,10 +40,12 @@ export async function addComment(
       },
     });
   } catch (error) {
-    console.log("Error posting this post: ", error);
-    return { error: `Error posting this post ${error}` };
+    console.log("Error posting this comment: ", error);
+    return { error: `Error posting this comment ${error}` };
   }
   return {
     success: "Comment published successfully!",
   };
+
+  revalidatePath("/");
 }

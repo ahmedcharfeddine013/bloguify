@@ -16,6 +16,7 @@ import React, { useTransition } from "react";
 import { useForm, useFormContext } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SendHorizonal } from "lucide-react";
+import { addComment } from "@/lib/actions/comment";
 
 const CreateCommentForm = ({ postId }: { postId: string }) => {
   const [isPending, startTransition] = useTransition();
@@ -29,15 +30,27 @@ const CreateCommentForm = ({ postId }: { postId: string }) => {
   });
 
   const onSubmit = async (values: z.infer<typeof addCommentSchema>) => {
-    startTransition(() => {});
+    startTransition(() => {
+      addComment(postId, values).then((data) => {
+        if (data?.error) {
+          toast({
+            title: "Error",
+            description: data.error,
+          });
+        } else {
+          toast({
+            title: "Success",
+            description: data.success,
+          });
+          form.reset();
+        }
+      });
+    });
   };
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-row "
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-row ">
         <FormField
           name="content"
           control={form.control}
