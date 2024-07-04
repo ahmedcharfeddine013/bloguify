@@ -38,3 +38,8 @@ export async function addPost(values: z.infer<typeof addPostSchema>) {
     success: "Post published successfully!",
   };
 }
+
+export async function getAllPost() {
+  const posts = await db.post.findMany();
+  return posts;
+}
