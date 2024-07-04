@@ -12,10 +12,8 @@ import {
 } from "@/components/ui/form";
 import { addPostSchema } from "@/lib/validators/post";
 import {
-  FormProvider,
   useForm,
   useFormContext,
-  useFormState,
 } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useFormStatus } from "react-dom";
@@ -26,8 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 
 const CreatePostForm = () => {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
@@ -100,17 +97,3 @@ const CreatePostForm = () => {
 };
 
 export default CreatePostForm;
-
-const SubmitButton = () => {
-  const { formState } = useFormContext();
-
-  return (
-    <Button
-      type="submit"
-      className="flex w-full"
-      disabled={formState.isSubmitting}
-    >
-      {formState.isSubmitting ? "Saving..." : "Save"}
-    </Button>
-  );
-};

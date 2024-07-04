@@ -13,6 +13,11 @@ import { Heart } from "lucide-react";
 import { Share } from "lucide-react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "../ui/button";
+import PostComment from "../comment/PostComment";
+import PostComments from "../comment/PostComments";
+import CreateCommentForm from "../forms/comment/CreateCommentForm";
+import Image from "next/image";
+import UserAvatar from "../user/UserAvatar";
 
 const PostCard = ({ post }: { post: Post }) => {
   return (
@@ -23,7 +28,7 @@ const PostCard = ({ post }: { post: Post }) => {
       </CardHeader>
       <div className="px-4">
         <CardContent>{post.content}</CardContent>
-        <CardFooter>
+        <CardFooter className="flex items-start justify-start flex-col gap-3">
           <div className="flex items-center justify-center gap-3 w-full">
             <Button className="w-full space-x-2">
               <Heart size={20} />
@@ -37,6 +42,13 @@ const PostCard = ({ post }: { post: Post }) => {
               <Share size={20} />
               <p>Share</p>
             </Button>
+          </div>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-center gap-2">
+              <UserAvatar />
+              <CreateCommentForm postId={post.id} />
+            </div>
+            <PostComments postId={post.id} />
           </div>
         </CardFooter>
       </div>
