@@ -75,7 +75,9 @@ const Navbar = () => {
 
         <SignedIn>
           <div className="flex items-center justify-end w-full gap-5">
-            <Button className="hidden lg:block">Create post</Button>
+            <Button className="hidden lg:block">
+              <Link href={"/new"}>Create post</Link>
+            </Button>
             <SearchFormMobile />
             <div>
               <BellRing className="w-6 h-6" />
