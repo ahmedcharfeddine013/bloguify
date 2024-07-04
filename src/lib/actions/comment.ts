@@ -43,9 +43,13 @@ export async function addComment(
     console.log("Error posting this comment: ", error);
     return { error: `Error posting this comment ${error}` };
   }
+  revalidatePath("/");
   return {
     success: "Comment published successfully!",
   };
+}
 
-  revalidatePath("/");
+export async function deleteComment(commentId: string) {
+  const comment = await db.comment.delete({ where: { id: commentId } });
+  return comment;
 }

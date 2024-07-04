@@ -48,3 +48,8 @@ export async function getPostById(id: string) {
   const post = await db.post.findUnique({ where: { id } });
   return post;
 }
+
+export async function deletePost(postId: string) {
+  const post = db.post.delete({ where: { id: postId } });
+  return post;
+}
