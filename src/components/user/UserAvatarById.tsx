@@ -11,7 +11,7 @@ const UserAvatarById = async ({ userId }: { userId: string }) => {
   return (
     <div className="rounded-full overflow-hidden">
       {user.imageUrl ? (
-        <Image src={user.imageUrl} alt="user" height={24} width={24} />
+        <Image src={user.imageUrl} alt="user" height={36} width={36} />
       ) : (
         <AvatarFallback>AC</AvatarFallback>
       )}
