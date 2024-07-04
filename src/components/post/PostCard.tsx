@@ -44,7 +44,7 @@ const PostCard = ({ post }: { post: Post }) => {
               <p>Share</p>
             </Button>
           </div>
-          <div className="flex flex-col gap-10 w-full">
+          <div className="flex flex-col items-center justify-start gap-10 w-full">
             <div className="flex items-start justify-start gap-2 w-full">
               <UserAvatar />
               <CreateCommentForm postId={post.id} />

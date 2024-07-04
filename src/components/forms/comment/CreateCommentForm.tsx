@@ -50,13 +50,16 @@ const CreateCommentForm = ({ postId }: { postId: string }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-row ">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-row w-full gap-2"
+      >
         <FormField
           name="content"
           control={form.control}
           render={({ field }) => (
-            <FormItem>
-              <FormControl className="rounded-3xl overflow-hidden flex">
+            <FormItem className="flex w-full">
+              <FormControl className="rounded-3xl flex w-full">
                 <Input {...field} className="flex w-full " />
               </FormControl>
               <FormMessage />
@@ -66,7 +69,7 @@ const CreateCommentForm = ({ postId }: { postId: string }) => {
 
         <Button
           type="submit"
-          className="w-fit bg-transparent text-primary hover:bg-transparent hover:scale-110 flex items-center justify-center"
+          className="w-fit bg-transparent text-primary hover:bg-transparent hover:scale-110 flex items-center justify-center p-0"
           disabled={isPending}
         >
           <SendHorizonal />
