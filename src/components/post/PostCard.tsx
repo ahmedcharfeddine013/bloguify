@@ -1,9 +1,8 @@
 import { Post } from "@prisma/client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -13,10 +12,8 @@ import { Heart } from "lucide-react";
 import { Share } from "lucide-react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "../ui/button";
-import PostComment from "../comment/PostComment";
 import PostComments from "../comment/PostComments";
 import CreateCommentForm from "../forms/comment/CreateCommentForm";
-import Image from "next/image";
 import UserAvatar from "../user/UserAvatar";
 
 const PostCard = ({ post }: { post: Post }) => {
@@ -45,7 +42,10 @@ const PostCard = ({ post }: { post: Post }) => {
             </Button>
           </div>
           <div className="flex flex-col items-center justify-start gap-10 w-full">
-            <div className="flex items-start justify-start gap-2 w-full">
+            <div
+              id="comment_form"
+              className="flex items-start justify-start gap-2 w-full"
+            >
               <UserAvatar />
               <CreateCommentForm postId={post.id} />
             </div>
