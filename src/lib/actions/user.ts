@@ -42,3 +42,12 @@ export async function UpdateUser(id: string, data: Partial<User>) {
     return { error };
   }
 }
+
+export async function getUserByClerkId(clerkId: string) {
+  const user = await db.user.findUnique({
+    where: {
+      clerkUserId: clerkId,
+    },
+  });
+  return user;
+}

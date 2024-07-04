@@ -43,3 +43,8 @@ export async function getAllPost() {
   const posts = await db.post.findMany();
   return posts;
 }
+
+export async function getPostById(id: string) {
+  const post = await db.post.findUnique({ where: { id } });
+  return post;
+}

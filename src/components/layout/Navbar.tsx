@@ -12,7 +12,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SignedIn } from "@clerk/nextjs";
 import { SignedOut } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/server";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -51,7 +50,6 @@ const Navbar = () => {
           </div>
           <SideBarMobile toggled={toggled} />
         </div>
-
         <div className="flex items-center justify-start w-full gap-4">
           <Button
             className="p-0 bg-transparent h-8 w-8 lg:hidden"
@@ -72,7 +70,6 @@ const Navbar = () => {
             </Button>
           </div>
         </SignedOut>
-
         <SignedIn>
           <div className="flex items-center justify-end w-full gap-5">
             <Button className="hidden lg:block">
