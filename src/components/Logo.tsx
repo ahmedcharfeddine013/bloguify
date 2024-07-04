@@ -1,12 +1,13 @@
 import Image from "next/image";
 import React from "react";
 import logo from "../../public/logo.png";
+import Link from "next/link";
 
 const Logo = () => {
   return (
-    <div>
+    <Link href="/">
       <Image src={logo} alt="DEVIA" height={100} width={100} />
-    </div>
+    </Link>
   );
 };
 
