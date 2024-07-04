@@ -26,9 +26,10 @@ const PostCard = ({ post }: { post: Post }) => {
         <PostAuthor clerkId={post.userId} />
         <CardTitle className="px-4">{post.title}</CardTitle>
       </CardHeader>
-      <div className="px-4">
+      <div className="flex  justify-center flex-col w-full px-4 space-y-6 ">
         <CardContent>{post.content}</CardContent>
-        <CardFooter className="flex items-start justify-start flex-col gap-3">
+        <div className="flex items-center justify-center  pt-1 bg-primary/50 mx-10 rounded-3xl"></div>
+        <CardFooter className="flex items-start justify-start flex-col gap-6 w-full">
           <div className="flex items-center justify-center gap-3 w-full">
             <Button className="w-full space-x-2">
               <Heart size={20} />
@@ -43,8 +44,8 @@ const PostCard = ({ post }: { post: Post }) => {
               <p>Share</p>
             </Button>
           </div>
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-center gap-2">
+          <div className="flex flex-col gap-3 w-full">
+            <div className="flex items-start justify-start gap-2 w-full">
               <UserAvatar />
               <CreateCommentForm postId={post.id} />
             </div>

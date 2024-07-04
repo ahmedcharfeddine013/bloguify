@@ -36,15 +36,15 @@ const CreateCommentForm = ({ postId }: { postId: string }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex items-center justify-center w-full gap-1"
+        className="flex flex-row "
       >
         <FormField
           name="content"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormControl className="rounded-2xl overflow-hidden">
-                <Input {...field}  />
+              <FormControl className="rounded-3xl overflow-hidden flex">
+                <Input {...field} className="flex w-full " />
               </FormControl>
               <FormMessage />
             </FormItem>
