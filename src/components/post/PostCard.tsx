@@ -18,7 +18,7 @@ import UserAvatar from "../user/UserAvatar";
 
 const PostCard = ({ post }: { post: Post }) => {
   return (
-    <Card>
+    <Card className="bg-white/10">
       <CardHeader className="space-y-6">
         <PostAuthor clerkId={post.userId} />
         <CardTitle className="px-4">{post.title}</CardTitle>
@@ -30,15 +30,15 @@ const PostCard = ({ post }: { post: Post }) => {
           <div className="flex items-center justify-center gap-3 w-full">
             <Button className="w-full space-x-2">
               <Heart size={20} />
-              <p>Like</p>
+              <p className="hidden md:block">Like</p>
             </Button>
             <Button className="w-full space-x-2">
               <MessageCircle size={20} />
-              <p>Comment</p>
+              <p className="hidden md:block">Comment</p>
             </Button>
             <Button className="w-full space-x-2">
               <Share size={20} />
-              <p>Share</p>
+              <p className="hidden md:block">Share</p>
             </Button>
           </div>
           <div className="flex flex-col items-center justify-start gap-10 w-full">

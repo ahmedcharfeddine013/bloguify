@@ -6,7 +6,7 @@ const Posts = async () => {
   const posts = await getAllPost();
   if (posts == null) return <p>No posts yet!</p>;
   return (
-    <div>
+    <div className="space-y-6">
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
