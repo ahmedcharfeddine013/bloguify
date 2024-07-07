@@ -66,18 +66,18 @@ const LikePost = ({ postId }: { postId: string }) => {
       {isPending ? (
         <p>Liking...</p>
       ) : isLiked ? (
-        <div className="w-full space-x-2 flex items-center justify-center gap-2">
+        <div
+          className={
+            "text-red-500 w-full space-x-2 flex items-center justify-center gap-2"
+          }
+        >
           <HeartIcon size={20} />
-          <p className={`hidden md:block ${isLiked ? "text-red-700" : ""} `}>
-            Liked
-          </p>
+          <p className={`hidden md:block`}>Liked</p>
         </div>
       ) : (
         <div className="w-full space-x-2 flex items-center justify-center gap-2">
           <Heart size={20} />
-          <p className={`hidden md:block ${isLiked ? "text-red-700" : ""} `}>
-            Like
-          </p>
+          <p className={`hidden md:block`}>Like</p>
         </div>
       )}
     </Button>
