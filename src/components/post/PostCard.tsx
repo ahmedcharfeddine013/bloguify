@@ -1,5 +1,5 @@
 import { Post } from "@prisma/client";
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import {
   Card,
   CardContent,
@@ -15,6 +15,10 @@ import { Button } from "../ui/button";
 import PostComments from "../comment/PostComments";
 import CreateCommentForm from "../forms/comment/CreateCommentForm";
 import UserAvatar from "../user/UserAvatar";
+import Link from "next/link";
+import { likePost } from "@/lib/actions/like";
+import { useToast } from "../ui/use-toast";
+import LikePost from "../like/LikePost";
 
 const PostCard = ({ post }: { post: Post }) => {
   return (
@@ -28,10 +32,7 @@ const PostCard = ({ post }: { post: Post }) => {
         <div className="flex items-center justify-center  pt-1 bg-primary/50 mx-10 rounded-3xl"></div>
         <CardFooter className="flex items-start justify-start flex-col gap-6 w-full">
           <div className="flex items-center justify-center gap-3 w-full">
-            <Button className="w-full space-x-2">
-              <Heart size={20} />
-              <p className="hidden md:block">Like</p>
-            </Button>
+            <LikePost postId={post.id} />
             <Button className="w-full space-x-2">
               <MessageCircle size={20} />
               <p className="hidden md:block">Comment</p>
