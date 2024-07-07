@@ -33,3 +33,18 @@ export async function postLikes(postId: string) {
   });
   return likes;
 }
+
+export async function checkIfPostIsLikedByUser(postId: string) {
+  const { userId } = auth();
+  if (userId == null) {
+    console.log("Please sign in first!");
+    redirect("/auth/sign-in");
+  }
+
+  const likes = await postLikes(postId);
+
+  const isLiked = likes.find((like) => like.userId === userId);
+
+  if (isLiked) return true;
+  return false;
+}

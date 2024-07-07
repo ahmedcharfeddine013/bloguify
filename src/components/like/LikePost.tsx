@@ -1,14 +1,25 @@
 "use client";
 
-import React, { useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { useToast } from "../ui/use-toast";
-import { likePost } from "@/lib/actions/like";
+import { checkIfPostIsLikedByUser, likePost } from "@/lib/actions/like";
 import { Button } from "../ui/button";
 import { Heart } from "lucide-react";
 
 const LikePost = ({ postId }: { postId: string }) => {
+  const [isLiked, setIsLiked] = useState<boolean>();
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
+
+  useEffect(() => {
+    const checkLiked = async () => {
+      const isLiked = await checkIfPostIsLikedByUser(postId);
+      setIsLiked(isLiked);
+    };
+
+    checkLiked();
+  }, [postId]);
+
   const onSubmit = async () => {
     startTransition(() => {
       likePost(postId).then((data) => {
@@ -31,7 +42,9 @@ const LikePost = ({ postId }: { postId: string }) => {
   return (
     <Button className="w-full space-x-2" onClick={onSubmit}>
       <Heart size={20} />
-      <p className="hidden md:block">Like</p>
+      <p className={`hidden md:block ${isLiked ? "text-red-700" : ""} `}>
+        Like
+      </p>
     </Button>
   );
 };
