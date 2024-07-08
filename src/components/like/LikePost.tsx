@@ -5,18 +5,29 @@ import { useToast } from "../ui/use-toast";
 import {
   checkIfPostIsLikedByUser,
   likePost,
+  postLikes,
   unlikePost,
 } from "@/lib/actions/like";
 import { Button } from "../ui/button";
 import { Heart } from "lucide-react";
 import { HeartIcon } from "lucide-react";
 import { ThumbsUp } from "lucide-react";
+import { formatNumber } from "@/lib/formatters";
 
 const LikePost = ({ postId }: { postId: string }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesNumber, setLikesNumber] = useState<number>();
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const likes = await postLikes(postId);
+      setLikesNumber(likes.length);
+    };
+
+    fetchLikes();
+  }, [postId]);
 
   useEffect(() => {
     const checkLiked = async () => {
@@ -39,6 +50,7 @@ const LikePost = ({ postId }: { postId: string }) => {
             });
           } else {
             setIsLiked(true);
+            setLikesNumber((prev) => (prev !== undefined ? prev + 1 : 1));
             toast({
               title: "Success",
               description: data.success,
@@ -55,6 +67,7 @@ const LikePost = ({ postId }: { postId: string }) => {
             });
           } else {
             setIsLiked(false);
+            setLikesNumber((prev) => (prev !== undefined ? prev - 1 : 0));
             toast({
               title: "Success",
               description: data.success,
@@ -78,10 +91,12 @@ const LikePost = ({ postId }: { postId: string }) => {
           }
         >
           <ThumbsUp size={20} />
+          <p>{likesNumber && formatNumber(likesNumber)}</p>
         </div>
       ) : (
         <div className="w-full space-x-2 flex items-center justify-center gap-2">
           <ThumbsUp size={20} />
+          <p>{likesNumber ? formatNumber(likesNumber) : 0}</p>
         </div>
       )}
     </Button>
