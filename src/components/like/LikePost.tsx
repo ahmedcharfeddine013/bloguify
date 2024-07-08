@@ -10,9 +10,11 @@ import {
 import { Button } from "../ui/button";
 import { Heart } from "lucide-react";
 import { HeartIcon } from "lucide-react";
+import { ThumbsUp } from "lucide-react";
 
 const LikePost = ({ postId }: { postId: string }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
+  const [likesNumber, setLikesNumber] = useState<number>();
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
@@ -36,6 +38,7 @@ const LikePost = ({ postId }: { postId: string }) => {
               description: data.error,
             });
           } else {
+            setIsLiked(true);
             toast({
               title: "Success",
               description: data.success,
@@ -51,6 +54,7 @@ const LikePost = ({ postId }: { postId: string }) => {
               description: data.error,
             });
           } else {
+            setIsLiked(false);
             toast({
               title: "Success",
               description: data.success,
@@ -62,22 +66,22 @@ const LikePost = ({ postId }: { postId: string }) => {
   };
 
   return (
-    <Button className="w-full" onClick={onSubmit} disabled={isPending}>
-      {isPending ? (
-        <p>Liking...</p>
-      ) : isLiked ? (
+    <Button
+      className=" bg-transparent hover:bg-transparent hover:scale-125 transition-all ease-in duration-100 "
+      onClick={onSubmit}
+      disabled={isPending}
+    >
+      {isLiked ? (
         <div
           className={
-            "text-red-500 w-full space-x-2 flex items-center justify-center gap-2"
+            "text-blue-500 w-full space-x-2 flex items-center justify-center gap-2"
           }
         >
-          <HeartIcon size={20} />
-          <p className={`hidden md:block`}>Liked</p>
+          <ThumbsUp size={20} />
         </div>
       ) : (
         <div className="w-full space-x-2 flex items-center justify-center gap-2">
-          <Heart size={20} />
-          <p className={`hidden md:block`}>Like</p>
+          <ThumbsUp size={20} />
         </div>
       )}
     </Button>

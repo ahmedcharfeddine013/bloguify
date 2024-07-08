@@ -31,15 +31,13 @@ const PostCard = ({ post }: { post: Post }) => {
         <CardContent>{post.content}</CardContent>
         <div className="flex items-center justify-center  pt-1 bg-primary/50 mx-10 rounded-3xl"></div>
         <CardFooter className="flex items-start justify-start flex-col gap-6 w-full">
-          <div className="flex items-center justify-center gap-3 w-full">
+          <div className="flex items-center justify-start gap-3 w-full">
             <LikePost postId={post.id} />
-            <Button className="w-full space-x-2">
+            <Button className="bg-transparent hover:bg-transparent hover:scale-125 transition-all ease-in duration-100">
               <MessageCircle size={20} />
-              <p className="hidden md:block">Comment</p>
             </Button>
-            <Button className="w-full space-x-2">
+            <Button className="bg-transparent hover:bg-transparent hover:scale-125 transition-all ease-in duration-100">
               <Share size={20} />
-              <p className="hidden md:block">Share</p>
             </Button>
           </div>
           <div className="flex flex-col items-center justify-start gap-10 w-full">
