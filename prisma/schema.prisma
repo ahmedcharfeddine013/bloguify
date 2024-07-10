@@ -13,31 +13,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  email       String    @unique
-  username    String?   @unique
-  firstName   String?
-  lastName    String?
-  imageUrl    String?
-  clerkUserId String    @unique
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  posts       Post[]
-  likes       Like[]
-  comments    Comment[]
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  email        String         @unique
+  username     String?        @unique
+  firstName    String?
+  lastName     String?
+  imageUrl     String?
+  role         Role
+  clerkUserId  String         @unique
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  posts        Post[]
+  likes        Like[]
+  comments     Comment[]
+  CommentLike  CommentLike[]
+  CommentReply CommentReply[]
 }
 
 model Post {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  content   String
-  userId    String
-  user      User      @relation(fields: [userId], references: [clerkUserId])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  likes     Like[]
-  comments  Comment[]
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  content      String
+  userId       String
+  user         User           @relation(fields: [userId], references: [clerkUserId])
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  likes        Like[]
+  comments     Comment[]
+  CommentLike  CommentLike[]
+  CommentReply CommentReply[]
 }
 
 model Like {
@@ -51,12 +61,39 @@ model Like {
 }
 
 model Comment {
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  content          String
+  postId           String         @db.ObjectId
+  post             Post           @relation(fields: [postId], references: [id])
+  userId           String
+  user             User           @relation(fields: [userId], references: [clerkUserId])
+  commentLikes     CommentLike[]
+  commentRezzplies CommentReply[]
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+}
+
+model CommentLike {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  content   String
-  postId    String   @db.ObjectId
-  post      Post     @relation(fields: [postId], references: [id])
+  commentId String   @db.ObjectId
+  comment   Comment  @relation(fields: [commentId], references: [id])
   userId    String
   user      User     @relation(fields: [userId], references: [clerkUserId])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Post      Post?    @relation(fields: [postId], references: [id])
+  postId    String?  @db.ObjectId
+}
+
+model CommentReply {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  commentId String   @db.ObjectId
+  comment   Comment  @relation(fields: [commentId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [clerkUserId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Post      Post?    @relation(fields: [postId], references: [id])
+  postId    String?  @db.ObjectId
 }
