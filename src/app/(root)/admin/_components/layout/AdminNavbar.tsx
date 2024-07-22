@@ -7,7 +7,7 @@ import React, { ComponentProps } from "react";
 
 const AdminNavbar = () => {
   return (
-    <nav className="bg-primary text-primary-foreground flex justify-center px-4">
+    <nav className="bg-primary text-primary-foreground flex justify-center flex-col w-fit h-screen items-center">
       <NavLink href="/admin">Dashboard</NavLink>
       <NavLink href="/admin/products">Users</NavLink>
       <NavLink href="/admin/users">Customers</NavLink>
@@ -24,7 +24,7 @@ export function NavLink(props: Omit<ComponentProps<typeof Link>, "className">) {
     <Link
       {...props}
       className={cn(
-        "p-4 hover:bg-secondary hover:text-secondary-foreground focus-visible:bg-secondary focus-visible:text-secondary-foreground",
+        "py-4 px-10 hover:bg-secondary hover:text-secondary-foreground focus-visible:bg-secondary focus-visible:text-secondary-foreground",
         pathname === props.href && "bg-background text-foreground"
       )}
     />
