@@ -1,0 +1,10 @@
+Bellow is a list of TODO Tasks:
+
+    1-architecting the database depending on the needs of the user data and project features.
+    2-Add Comment interaction features such as comment liking and comment replies.
+    3-Work on user profile such as onboarding page and profile and user profile settings.
+    4-working on an AI that interacts with the user data so it knows what to recommend to the user as the user work on a certain algorithm.
+    5-User Chat.
+    6-Connection between users so they can chat in private but only in a certain condition which is being connected together.
+    7-Add a feature that allows the user to create a group chat with other users.
+    
