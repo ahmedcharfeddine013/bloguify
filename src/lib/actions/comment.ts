@@ -27,7 +27,7 @@ export async function addComment(
   const validatedFields = addCommentSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid fields:" };
+    return { error: "Invalid fields!" };
   }
   const data = validatedFields.data;
 
