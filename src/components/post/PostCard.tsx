@@ -1,5 +1,7 @@
+
+
 import { Post } from "@prisma/client";
-import React, { useState, useTransition } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -8,16 +10,12 @@ import {
   CardTitle,
 } from "../ui/card";
 import PostAuthor from "./PostAuthor";
-import { Heart } from "lucide-react";
 import { Share } from "lucide-react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import PostComments from "../comment/PostComments";
 import CreateCommentForm from "../forms/comment/CreateCommentForm";
 import UserAvatar from "../user/UserAvatar";
-import Link from "next/link";
-import { likePost } from "@/lib/actions/like";
-import { useToast } from "../ui/use-toast";
 import LikePost from "../like/LikePost";
 
 const PostCard = ({ post }: { post: Post }) => {

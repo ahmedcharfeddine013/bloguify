@@ -9,8 +9,6 @@ import {
   unlikePost,
 } from "@/lib/actions/like";
 import { Button } from "../ui/button";
-import { Heart } from "lucide-react";
-import { HeartIcon } from "lucide-react";
 import { ThumbsUp } from "lucide-react";
 import { formatNumber } from "@/lib/formatters";
 

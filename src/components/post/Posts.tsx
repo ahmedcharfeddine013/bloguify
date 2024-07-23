@@ -17,9 +17,9 @@ const Posts = () => {
   if (posts == null) return <p>No posts yet!</p>;
   return (
     <div className="space-y-6">
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
     </div>
   );
 };
